@@ -49,13 +49,14 @@ foreign KEY(`corsi_materie_id`) REFERENCES corsi_materie(`id`)
 );
 
 CREATE TABLE `voto`(
-`id` INT NOT NULL AUTO_INCREMENT,
+`voto` INT not null,
 `studente_id` INT not null,
 `appello_id` INT not null,
-PRIMARY KEY(`id`),
+primary KEY(`studente_id`,`appello_id`),
 FOREIGN KEY(`studente_id`) REFERENCES studente(`id`),
-FOREIGN KEY(`appello_id`) REFERENCES appello(`id`),
+FOREIGN KEY(`appello_id`) REFERENCES appello(`id`)
 );
+
 
 CREATE TABLE `docente`(
 `id` INT NOT NULL AUTO_INCREMENT,
@@ -65,3 +66,10 @@ CREATE TABLE `docente`(
 PRIMARY KEY(`id`)
 );
 
+create table `docente_corsi_materie`(
+`docente_id` INT not null,
+`corsi_materie_id` INT not null,
+primary KEY(`docente_id`,`corsi_materie_id`),
+FOREIGN KEY(`docente_id`) REFERENCES docente(`id`),
+FOREIGN KEY(`corsi_materie_id`) REFERENCES corsi_materie(`id`)
+);
